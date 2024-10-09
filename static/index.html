@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>benchmark</title>
+</head>
+<body>
+
+    <nav class="menu">
+  <ul>
+    <li><a href="#">Главная</a></li>
+    <li><a href="#">О нас</a></li>
+    <li><a href="#">Цены</a></li>
+    <li><a href="#">FAQ</a></li>
+  </ul>
+</nav>
+
+    <header>
+        <img itemprop="image" src="https://avatars.githubusercontent.com/u/95299656?s=200&amp;v=4" width="100" height="100">
+
+<blockquote>
+    "Запускайте, сравнивайте и оптимизируйте! Это никогда не было так просто и дешёво! Мы вам поможем при помощи чудесной инфраструктуры!"
+</blockquote>
+
+    </header>
+    <main>
+
+
+
+
+
+<h1>Выберите</h1>
+
+<section>
+<p>
+<label for="source">Исходный код:</label>
+    <select name="source" id="source-select">
+    <option value="github">Github</option>
+    <option value="gitLab">GitLab</option>
+    <option value="custom_svn_git">Сustom svn or git</option>
+</select>
+</p>
+
+<p>
+<label for="environment-select">Виртуальная машина:</label>
+<select name="environment" id="environment-select">
+    <option value="tiny">tiny</option>
+    <option value="small">small</option>
+    <option value="medium">medium</option>
+    <option value="large">large</option>
+    <option value="cloud">custom from yandex.cloud</option>
+</select>
+</p>
+
+<p>
+<label for="language-select">Язык программирования:</label>
+<select name="language" id="language-select">
+    <option value="cpp">c++</option>
+    <option value="go">golang</option>
+    <option value="pythno3">python3</option>
+    <option value="custom">custom language</option>
+</select>
+</p>
+
+<p>
+    <label for="language-select">Список тестов:</label> 
+    <ul>
+        <li>universal/src/formats/json/string_builder_benchmark.cpp
+        <input type="checkbox"/>
+        </li>
+
+        <li>universal/src/utils/encoding/hex_benchmark.cpp
+        <input type="checkbox" checked/>
+        </li>
+
+    </ul>
+</p>
+
+<button name="button">Запустить!</button>
+
+</section>
+
+    </main>
+    
+<h2>Выбранный тест:</h2>
+
+<pre>
+<code>
+using namespace formats::json;
+
+Value Build(int level) {
+  ValueBuilder builder;
+  if (level % 2) {
+    builder.PushBack("abc");
+    builder.PushBack(123);
+    builder.PushBack(Value());
+    if (level > 0) builder.PushBack(Build(level - 1));
+  } else {
+    builder["key"] = "abc";
+    builder["other-key"] = 123;
+    builder["super-key"] = Value();
+    if (level > 0) builder["object"] = Build(level - 1);
+  }
+
+  return builder.ExtractValue();
+}
+
+void JsonSerialize(benchmark::State& state) {
+  for ([[maybe_unused]] auto _ : state) {
+    auto json = Build(state.range(0));
+    const auto res = ToString(json);
+    benchmark::DoNotOptimize(res);
+  }
+}
+BENCHMARK(JsonSerialize)->RangeMultiplier(4)->Range(1, 1024);
+</code>
+<pre>
+
+<h1>Результат</h1>
+
+<pre>RUNNING: ./benchmarks --benchmark_filter=JsonSerialize --benchmark_out=/tmp/tmpbjn5bzji
+2024-08-28T18:12:56+03:00
+Running ./benchmarks
+Run on (20 X 3753.26 MHz CPU s)
+CPU Caches:
+  L1 Data 48 KiB (x10)
+  L1 Instruction 32 KiB (x10)
+  L2 Unified 1280 KiB (x10)
+  L3 Unified 24576 KiB (x1)
+Load Average: 6.42, 4.46, 6.56
+-------------------------------------------------------------
+Benchmark                   Time             CPU   Iterations
+-------------------------------------------------------------
+JsonSerialize/1024     622664 ns       622435 ns         1031
+JsonSerialize/2048    1239050 ns      1238760 ns          557
+JsonSerialize/4096    2479008 ns      2478885 ns          283
+</pre>
+
+
+
+    <footer>
+        <p>Made with my hands. with great love🐙</p>
+        <a href="https://github.com/i9kin/benchmark">gh</a>
+        <a href="https://yandex.cloud">yandex cloud</a>
+    </footer>  
+
+</body>
+</html>
