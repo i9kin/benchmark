@@ -1,0 +1,158 @@
+body,
+html {
+  margin: 0; /* Убираем отступы по умолчанию у body и html */
+  padding: 0;
+  height: 100%; /* Устанавливаем высоту 100%, чтобы footer знал, что можно встать в самый низ */
+}
+
+main {
+  flex: 1; /* для приклеивания footer'а */
+  padding: 20px;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  margin: 0;
+}
+
+h2 {
+  font-size: 20px;
+  line-height: 1.5;
+  font-family: "Arial", sans-serif;
+  font-weight: bold;
+  text-align: center;
+  vertical-align: middle;
+  font-style: oblique;
+  color: black;
+  word-spacing: 3px; /* Пробелы между словами */
+}
+
+/* Стили для меток и выпадающих списков */
+label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #f9f9f9;
+  transition: border-color 0.3s;
+}
+
+select:focus {
+  border-color: #4a90e2;
+}
+
+.checkbox-li {
+  background-color: #fafafa;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+blockquote {
+  font-family: "Georgia", serif;
+  font-size: 18px;
+  font-style: italic;
+  color: #333;
+  background-color: #f9f9f9;
+  border-left: 5px solid #ccc;
+  margin: 20px;
+  padding: 15px 20px;
+  position: relative;
+}
+
+.split-window {
+  display: flex;
+}
+
+.split-window__left {
+  flex: 0 0 40%; /* занимает 40% ширины */
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.split-window__right {
+  flex: 0 0 60%; /* занимает 60% ширины */
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.full-width-button {
+  width: 100%;
+  height: 40px;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  text-align: center;
+  font-size: 16px;
+}
+
+.footer {
+  width: 100%;
+  padding: 0px;
+  background-color: orange;
+  color: black;
+  text-align: center;
+  font-size: 30px;
+  bottom: 0;
+  left: 0;
+}
+
+.footer > * {
+  margin: 5px;
+}
+
+.footer__github {
+  text-decoration: none;
+  color: black; /* Цвет текста */
+  font-size: 16px;
+}
+
+.footer__cloud {
+  text-decoration: none;
+  color: #007bff; /* Цвет текста */
+  font-size: 16px;
+}
+
+.menu {
+  display: flex;
+  align-items: center;
+  background-color: #333;
+  padding: 10px 20px;
+}
+
+.menu__list {
+  list-style: none;
+  display: flex;
+  padding: 0;
+  margin: 0;
+}
+
+.menu__list li {
+  margin-right: 20px;
+}
+
+.menu__list li a {
+  text-decoration: none; /* Убираем подчеркивание */
+  color: orange; /* Цвет текста */
+  font-size: 30px;
+}
+
+.menu img {
+  margin-right: 20px;
+  max-width: 100px;
+  border-radius: 50%;
+}
